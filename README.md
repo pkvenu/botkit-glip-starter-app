@@ -46,7 +46,7 @@ uptime
 
 ## Response
 ```
-I am a bot! I have been running for 5.089016666666667 minutes on LMRC7354.local.
+I am a bot! I have been running for xxxxxxx minutes on LMRC7354.local.
 ```
 
 ## Reference
