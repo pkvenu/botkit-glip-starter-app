@@ -38,6 +38,17 @@ GLIP_EXTENSION=
 $ npm start
 ```
 
+## Usage
+In the chat window enter the below command:
+```
+uptime
+```
+
+## Response
+```
+I am a bot! I have been running for 5.089016666666667 minutes on LMRC7354.local.
+```
+
 ## Reference
 
 Please see `botkit`'s guide and reference document [here](https://github.com/howdyai/botkit/blob/master/readme.md#developing-with-botkit).
