@@ -1,0 +1,16 @@
+{
+  "name": "botkit-glip-starter-app",
+  "version": "1.0.0",
+  "description": "Starter App for Botkit",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "botkit": "git://github.com/pkvenu/botkit#master",
+    "dotenv": "^4.0.0",
+    "os": "^0.1.1"
+  },
+  "author": "",
+  "license": "MIT"
+}
