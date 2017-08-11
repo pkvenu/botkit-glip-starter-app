@@ -3,6 +3,7 @@
 
 [![Code-Style:Standard](https://img.shields.io/badge/code%20style-standard-green.svg?style=flat-square)](http://standardjs.com/)
 [![License:MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+[![chat-svg](https://img.shields.io/badge/chat-on%20glip-orange.svg)](https://glipped.herokuapp.com/)
 
 `botkit-glip-starter-app` is a starter app allows you to create bots with Glip using [Botkit](https://www.github.com/howdyai/botkit).
 
