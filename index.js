@@ -6,28 +6,68 @@
 require('dotenv').config();
 
 var Botkit = require('botkit'),
-    os = require('os');
+    os = require('os'),
+    fs = require('fs'),
+    accessToken = "",
+    platform = null;
 
 
+
+if (!process.env.clientId || !process.env.clientSecret || !process.env.port) {
+        console.log('Error: Specify clientId clientSecret and port in environment');
+        process.exit(1);
+}
 
 var controller = Botkit.glipbot({
-    debug: false,
+    debug: true
+}).configureGlipApp({
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret,
+    redirectUri: process.env.redirectUri,
+    apiRoot: process.env.apiRoot
+    // accessToken: '',
+    // subscriptionId: ''
 });
 
-var bot = controller.spawn({
-    server: process.env.GLIP_SERVER,
-    appKey: process.env.GLIP_APPKEY,
-    appSecret: process.env.GLIP_APPSECRET,
-    username: process.env.GLIP_USERNAME,
-    password: process.env.GLIP_PASSWORD,
-    extension: process.env.GLIP_EXTENSION,
-}).startRTM();
+readAccessToken()
+
+function readAccessToken(){
+  try {
+    fs.accessSync('token.dat');
+    accessToken = fs.readFileSync('token.dat', 'utf8');
+  }catch (e) {
+    accessToken = ""
+  }
+}
+
+function storeAccessToken(accessToken){
+  fs.writeFile('token.dat', accessToken, function(err) {
+    if(err)
+      console.log(err)
+  })
+}
+
+var bot = controller.spawn({});
 
 controller.setupWebserver(process.env.port || 3000, function(err, webserver){
-    webserver.get('/', function (req ,res) {
-        res.send(':)');
+    controller.createWebhookEndpoints(webserver, bot,  function () {
+        console.log("Online");
     });
-    controller.createWebhookEndpoints(webserver, bot);
+
+    controller.createOauthEndpoints(webserver, bot, accessToken, function(err, req, res, token) {
+        if(err) {
+            res.status(500).send('ERROR: ' + err);
+        } else {
+            platform = controller.getRCPlatform();
+            storeAccessToken(token);
+            //res.send('Success!');
+        }
+    })
+
+});
+
+controller.hears(['hi','hello'], 'message_received', function (bot, message) {
+    bot.reply(message, "hi, you can ask me questions.");
 });
 
 // Usage: uptime
@@ -55,4 +95,3 @@ function formatUptime(uptime) {
     uptime = uptime + ' ' + unit;
     return uptime;
 }
-

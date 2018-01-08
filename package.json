@@ -7,10 +7,11 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "botkit": "git://github.com/pkvenu/botkit#master",
+    "botkit": "git://github.com/pkvenu/botkit.git#master",
     "dotenv": "^4.0.0",
+    "fs": "0.0.1-security",
     "os": "^0.1.1"
   },
-  "author": "",
+  "author": "pawan.venugopal@ringcentral.com",
   "license": "MIT"
 }

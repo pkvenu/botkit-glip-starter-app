@@ -58,3 +58,8 @@ typings/
 
 # dotenv environment variables file
 .idea/
+
+.dat
+token.dat
+
+.env
